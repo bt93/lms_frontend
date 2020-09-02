@@ -11,7 +11,8 @@
     <div v-if="toggleDate">
       <button v-on:click="makeInactive()" class="deactivate">Deactivate</button>
     </div>
-    <select v-model="user.permission" class="short-input">
+    <label for="select" class="drop-label">User Role</label>
+    <select v-model="user.permission" class="short-input" >
       <option value="user" v-if="this.$props.currentpermission != 'user'">User</option>
       <option value="admin" v-if="this.$props.currentpermission != 'admin'">Admin</option>
     </select>
@@ -157,7 +158,7 @@ export default {
   font-size: 12px;
   border-radius: 4px;
   border: none;
-  margin: 5px;
+  margin: 5px 5px 10px 5px;
   cursor: pointer;
 }
 input {
@@ -169,7 +170,7 @@ input {
 }
 .short-input{
   padding: 5px;
-  margin: 15px 5px 5px 5px;
+  margin: 0px 5px 5px 5px;
   width: 125px;
   float: left;
   border: none;
@@ -180,5 +181,9 @@ input {
   margin: 10px;
   border: none;
   border-radius: 2px;
+}
+.drop-label{
+  color:rgba(32, 33, 36, 1);
+  font-size: 12px;
 }
 </style>

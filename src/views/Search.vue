@@ -21,7 +21,7 @@
      </div>
       <div class="search-results" >
           <ul class="training-list">
-          <h1 class="notraining" v-if="noTrainings == true">No Trainings need approved</h1>
+          <h1 class="notraining" v-if="noTrainings == true">No Trainings</h1>
           <li v-for="aTrain in trainingArr" v-bind:key="aTrain.trainingId" class="training-item">
             <div
               id="proof-image-div"
