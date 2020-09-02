@@ -65,7 +65,6 @@ export default {
   methods: {
     toLower(){
        this.user.email = this.user.email.toLowerCase()
-       console.log(this.user.email)
        return this.user.email
     },
     login() {
