@@ -17,6 +17,7 @@
           v-model="user.email"
           required
           autofocus
+          @change="toLower"
         />
         <br />
         <label for="password" class="label">Password</label>
@@ -57,6 +58,11 @@ export default {
     };
   },
   methods: {
+     toLower(){
+       this.user.email = this.user.email.toLowerCase()
+       console.log(this.user.email)
+       return this.user.email
+    },
     register() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
         method: "POST",
