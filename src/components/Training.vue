@@ -42,14 +42,19 @@
             <span class="label">Training Description:</span>
             <span class="var">{{aTrain.topic}}</span>
           </h3>
-          <h3
+          <div v-if="aTrain.proof">
+            <h3
             class="proof-link"
             @click="showProof(aTrain.proof)"
             v-if=" aTrain.proof.includes('cloudinary')"
-          >Image</h3>
-          <h3 class="proof-link" v-else>
-            <a v-bind:href="aTrain.proof" target="blank">Link</a>
-          </h3>
+            >Image</h3>
+            <h3 class="proof-link" v-else>
+              <a v-bind:href="aTrain.proof" target="blank">Link</a>
+            </h3>
+          </div>
+          <div v-else>
+            <h3 class="proof-link">No proof given</h3>
+          </div>
           <h2 v-if="aTrain.isApproved === false" class="warn">Waiting on Approval</h2>
         </div>
 
@@ -84,14 +89,19 @@
             <span class="label">Training Description:</span>
             <span class="var">{{aTrain.topic}}</span>
           </h3>
-          <h3
+          <div v-if="aTrain.proof">
+            <h3
             class="proof-link"
             @click="showProof(aTrain.proof)"
             v-if=" aTrain.proof.includes('cloudinary')"
-          >Image</h3>
-          <h3 class="proof-link" v-else>
-            <a v-bind:href="aTrain.proof" target="blank">Link</a>
-          </h3>
+            >Image</h3>
+            <h3 class="proof-link" v-else>
+              <a v-bind:href="aTrain.proof" target="blank">Link</a>
+            </h3>
+          </div>
+          <div v-else>
+            <h3 class="proof-link">No proof given</h3>
+          </div>
           <button class="delete-button" @click="deleteTraining(aTrain.trainingId)">Delete</button>
         </div>
       </li>
