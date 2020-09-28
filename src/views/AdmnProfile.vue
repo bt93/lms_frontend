@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import auth from "@/auth.js";
+import profileService from '../services/ProfileService';
 import Training from "@/components/Training.vue";
 import TrainingForm from "@/components/TrainingForm.vue";
 import EditUser from "@/components/EditUser.vue";
@@ -96,16 +96,7 @@ export default {
     };
   },
   created() {
-    fetch(
-      `${process.env.VUE_APP_REMOTE_API}/api/training/${this.profile.profileId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + auth.getToken(),
-        },
-        credentials: "same-origin",
-      }
-    )
+    profileService.showTraining(this.profile.profileId)
       .then((response) => {
         return response.json();
       })
@@ -118,16 +109,7 @@ export default {
       });
   },
   mounted() {
-    fetch(
-      `${process.env.VUE_APP_REMOTE_API}/api/user/${this.profile.profileId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + auth.getToken(),
-        },
-        credentials: "same-origin",
-      }
-    )
+    profileService.getUser(this.profile.profileId)
       .then((response) => {
         return response.json();
       })

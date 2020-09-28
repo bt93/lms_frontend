@@ -39,6 +39,7 @@
 
 <script>
 import auth from "../auth";
+import authService from '../services/AuthServices';
 
 export default {
   name: "login",
@@ -68,14 +69,7 @@ export default {
        return this.user.email
     },
     login() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/login`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.user),
-      })
+      authService.login(this.user)
         .then((response) => {
           if (response.ok) {
             return response.text();

@@ -45,7 +45,8 @@
 </template>
 
 <script>
-import auth from "@/auth.js";
+import auth from '../auth'
+import profileService from '../services/ProfileService'
 
 export default {
   components: {},
@@ -60,13 +61,7 @@ export default {
   },
 
   created() {
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/allProfiles`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + auth.getToken(),
-      },
-      credentials: "same-origin",
-    })
+    profileService.getAllProfiles()
       .then((response) => {
         return response.json();
       })

@@ -10,8 +10,7 @@
 </template>
 
 <script>
-import auth from '@/auth.js'
-
+import profileService from '../services/ProfileService'
 
 export default {
    /*  components: {
@@ -24,14 +23,7 @@ export default {
     },
 
     created() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/users`,
-        {
-        method: 'GET',
-        headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-        },
-        credentials: 'same-origin',
-        })
+      profileService.getAllUsers()
         .then ((response) => {     
             return response.json()
             })  

@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import authServices from '../services/AuthServices'
+
 export default {
   name: "register",
   data() {
@@ -63,14 +65,7 @@ export default {
        return this.user.email
     },
     register() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/register`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.user),
-      })
+      authServices.register(this.user)
         .then((response) => {
           if (response.ok) {
             this.$router.push({

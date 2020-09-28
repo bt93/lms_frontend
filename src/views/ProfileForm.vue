@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import auth from '@/auth.js'
+import profileService from '../services/ProfileService'
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
     export default {
@@ -72,14 +72,7 @@ import 'vue2-dropzone/dist/vue2Dropzone.min.css'
         },
         methods:{
             createProfile() {
-                    fetch(`${process.env.VUE_APP_REMOTE_API}/api/createProfile`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: 'Bearer ' + auth.getToken(),     
-                        },
-                        body: JSON.stringify(this.profile)    
-                        })
+                    profileService.createProfile(this.profile)
                         .then((response) => {
                             if(response.ok) {
                                 this.$router.push({name: 'profile'});

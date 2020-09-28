@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import auth from "@/auth.js";
+import profileService from '../services/ProfileService';
 import Training from "@/components/Training.vue";
 import TrainingForm from "@/components/TrainingForm.vue";
 import PasswordUpdate from "@/components/PasswordUpdate.vue";
@@ -157,16 +157,7 @@ export default {
       return this.curTrainPeriod
     },
     showTraining() {
-      fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/training/${this.profile.profileId}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + auth.getToken(),
-          },
-          credentials: "same-origin",
-        }
-      )
+      profileService.showTraining(this.profile.profileId)
         .then((response) => {
           return response.json();
         })
@@ -178,16 +169,7 @@ export default {
         });
     },
     getCurtcp(){
-      fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/certperiod/${this.profile.campusShortCode}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + auth.getToken(),
-          },
-          credentials: "same-origin",
-        }
-      )
+      profileService.getCertcp(this.profile.campusShortCode)
         .then((response) => {
           return response.json();
         })
@@ -201,14 +183,7 @@ export default {
     }
   },
   created() {
-    
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/profile`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + auth.getToken(),
-      },
-      credentials: "same-origin",
-    })
+    profileService.getProfile()
       .then((response) => {
         return response.json();
       })
