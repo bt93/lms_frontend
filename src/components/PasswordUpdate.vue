@@ -34,7 +34,8 @@
 </template>
 
 <script>
-import auth from "@/auth.js";
+import profileService from '../services/ProfileService';
+
 export default {
   name: "PasswordUpdate",
   data() {
@@ -58,14 +59,7 @@ export default {
        }
      },
      updatePassword(){
-          fetch(`${process.env.VUE_APP_REMOTE_API}/api/updatePassword`, {
-              method: 'PUT',
-              headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: 'Bearer ' + auth.getToken(),     
-              },
-              body: JSON.stringify(this.user)    
-              })
+          profileService.updatePassword(this.user)
               .then((response) => {
                   if(response.ok) {
                       this.$router.go();

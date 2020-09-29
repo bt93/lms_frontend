@@ -25,6 +25,7 @@
 
 <script>
 import auth from "@/auth.js"
+import campusService from '../services/CampusService'
 
 export default {
   name: 'settings',
@@ -52,14 +53,7 @@ export default {
       return this.campus.currentPeriod
     },
     submitDate(){
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/period/${this.campusShortCode}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + auth.getToken(),     
-                },
-                body: JSON.stringify(this.campus)    
-                })
+       campusService.submitDate(this.campusShortCode, this.campus)
                 .then((response) => {
                     if(response.ok) {
                          this.$router.push({name: 'profile'});

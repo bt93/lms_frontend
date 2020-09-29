@@ -72,6 +72,7 @@
 
 <script>
 import profileService from '../services/ProfileService';
+import trainingService from '../services/TrainingService';
 import Training from "@/components/Training.vue";
 import TrainingForm from "@/components/TrainingForm.vue";
 import PasswordUpdate from "@/components/PasswordUpdate.vue";
@@ -157,7 +158,7 @@ export default {
       return this.curTrainPeriod
     },
     showTraining() {
-      profileService.showTraining(this.profile.profileId)
+      trainingService.showTraining(this.profile.profileId)
         .then((response) => {
           return response.json();
         })

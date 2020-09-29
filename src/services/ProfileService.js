@@ -58,19 +58,6 @@ export default {
           )
     },
 
-    showTraining(profileId) {
-        return fetch(
-                `${process.env.VUE_APP_REMOTE_API}/api/training/${profileId}`,
-                {
-                method: "GET",
-                headers: {
-                    Authorization: "Bearer " + auth.getToken(),
-                },
-                credentials: "same-origin",
-                }
-            )
-    },
-
     createProfile(profile) {
       return fetch(`${process.env.VUE_APP_REMOTE_API}/api/createProfile`, {
         method: 'POST',
@@ -80,5 +67,48 @@ export default {
         },
         body: JSON.stringify(profile)    
         })
+    },
+
+    updatePassword(user) {
+      return fetch(`${process.env.VUE_APP_REMOTE_API}/api/updatePassword`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),     
+        },
+        body: JSON.stringify(user)    
+        })
+    },
+
+    makeInactive(id, endDate) {
+      return fetch(`${process.env.VUE_APP_REMOTE_API}/api/deactivateUser/${id}`, {
+        method: "Put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.getToken(),
+        },
+        body: JSON.stringify(endDate),
+      })
+    },
+
+    deleteUser(id) {
+      return fetch(`${process.env.VUE_APP_REMOTE_API}/api/deleteUser/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + auth.getToken(),
+        },
+        credentials: "same-origin",
+      })
+    },
+
+    changeUserPermission(user) {
+      return fetch(`${process.env.VUE_APP_REMOTE_API}/api/changeUserPermission`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.getToken(),
+        },
+        body: JSON.stringify(user),
+      })
     }
 }

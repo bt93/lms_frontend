@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import auth from "@/auth.js";
+import trainingService from '../services/TrainingService';
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 export default {
@@ -135,17 +135,7 @@ export default {
       this.training.electiveTime = value * 60;
     },
     createTraining() {
-      fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/addTraining/${this.profileId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + auth.getToken(),
-          },
-          body: JSON.stringify(this.training),
-        }
-      )
+      trainingService.createTraining(this.profileId, this.training)
         .then((response) => {
           if (response.ok) {
             //close()

@@ -110,7 +110,8 @@
 </template>
 
 <script>
-import auth from "@/auth.js";
+import trainingService from '../services/TrainingService';
+
 export default {
   props: {
     firstName: String,
@@ -134,15 +135,9 @@ export default {
         this.image = false;
       }
     },
-    deleteTraining(t){
-      console.log(t)
-       fetch(`${process.env.VUE_APP_REMOTE_API}/api/deleteTraining/${t}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: "Bearer " + auth.getToken(),
-        },
-        credentials: "same-origin",
-      })
+    deleteTraining(id){
+      console.log(id)
+       trainingService.deleteTraining(id)
         .then((response) => {
           if (response.ok) {
             this.$router.push({ name: "profile" });

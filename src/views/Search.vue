@@ -93,6 +93,7 @@
 
 <script>
 import auth from "@/auth.js"
+import trainingService from '../services/TrainingService';
 
 export default {
   name: 'search',
@@ -146,16 +147,7 @@ export default {
       }
     },
     search(){
-      fetch(
-        `${process.env.VUE_APP_REMOTE_API}/api/searchTraining?fromDate=${this.fromDate}&toDate=${this.toDate}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + auth.getToken(),
-          },
-          credentials: "same-origin",
-        }
-      )
+      trainingService.searchTraining(this.fromDate, this.toDate)
         .then((response) => {
           return response.json();
         })
@@ -173,13 +165,7 @@ export default {
         });
     },
     approveTraining(id) {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/updateApproval/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.getToken(),
-        },
-      })
+      trainingService.approveTraining(id)
         .then((response) => {
           if (response.ok) {
              this.search();

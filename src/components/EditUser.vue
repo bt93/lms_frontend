@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import auth from "@/auth.js";
+import profileService from '../services/ProfileService';
 
 export default {
   props: {
@@ -49,14 +49,7 @@ export default {
       }
     },
     makeInactive() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/deactivateUser/${this.id}`, {
-        method: "Put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.getToken(),
-        },
-        body: JSON.stringify(this.endDate),
-      })
+      profileService.makeInactive(this.id, this.endDate)
         .then((response) => {
           if (response.ok) {
             this.$router.push({ name: "allProfiles" });
@@ -66,13 +59,7 @@ export default {
         .catch((err) => console.error(err));
     },
     deleteUser() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/deleteUser/${this.id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: "Bearer " + auth.getToken(),
-        },
-        credentials: "same-origin",
-      })
+      profileService.deleteUser(this.id)
         .then((response) => {
           if (response.ok) {
             this.$router.push({ name: "allProfiles" });
@@ -82,14 +69,7 @@ export default {
         .catch((err) => console.error(err));
     },
     changeUserpermission() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/changeUserPermission`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + auth.getToken(),
-        },
-        body: JSON.stringify(this.user),
-      })
+      profileService.changeUserPermission(this.user)
         .then((response) => {
           if (response.ok) {
             this.$router.push({ name: "allProfiles" });

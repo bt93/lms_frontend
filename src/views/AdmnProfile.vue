@@ -62,6 +62,7 @@
 
 <script>
 import profileService from '../services/ProfileService';
+import trainingService from '../services/TrainingService';
 import Training from "@/components/Training.vue";
 import TrainingForm from "@/components/TrainingForm.vue";
 import EditUser from "@/components/EditUser.vue";
@@ -96,7 +97,7 @@ export default {
     };
   },
   created() {
-    profileService.showTraining(this.profile.profileId)
+    trainingService.showTraining(this.profile.profileId)
       .then((response) => {
         return response.json();
       })
