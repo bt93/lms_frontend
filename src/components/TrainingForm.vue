@@ -4,23 +4,23 @@
       <h1>Add Training</h1>
       <div class="training-card">
         <span class="label">Name</span>
-        <input type="text" v-model="training.name" placeholder="Training Name.." autofocus />
+        <input type="text" v-model="training.name" placeholder="Training Name.." autofocus required />
         <br />
 
         <span class="label">Provider</span>
-        <input type="text" v-model="training.provider" placeholder="Provider.."/>
+        <input type="text" v-model="training.provider" placeholder="Provider.." required />
         <br />
 
         <span class="label">Topic/Description</span>
-        <input type="text" v-model="training.topic" placeholder="Topic.."/>
+        <input type="text" v-model="training.topic" placeholder="Topic.." required />
         <br />
 
         <span class="label">Date</span>
-        <input type="date" class="short-input" v-model="training.date" />
+        <input type="date" class="short-input" v-model="training.date" required />
         <br />
 
         <span class="label">Select Training Type</span>
-        <select v-model="type" class="short-input" @change="showType($event.target.value)">
+        <select v-model="type" class="short-input" @change="showType($event.target.value)" required>
           <option value="complianceTime">Compliance</option>
           <option value="electiveTime">Elective</option>
         </select><br />

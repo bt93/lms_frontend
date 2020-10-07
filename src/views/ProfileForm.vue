@@ -3,12 +3,12 @@
     <form class="new-profile-form" @submit.prevent="createProfile">
         <h1>Create Your Profile</h1>
         <div class="profile-card">
-                        <span class="label">First Name </span><input type="text" v-model="profile.firstname" autofocus><br/>
+                        <span class="label">First Name </span><input type="text" v-model="profile.firstname" autofocus required><br/>
                   
-                        <span class="label">Last Name </span><input type="text" v-model="profile.lastname"><br/>
+                        <span class="label">Last Name </span><input type="text" v-model="profile.lastname" required><br/>
 
                         <span class="label">Select Location </span>
-                        <select v-model="profile.campusShortCode" class="dropdown">
+                        <select v-model="profile.campusShortCode" class="dropdown" required>
                         <option value="CLE" >CLE</option>
                         <option value="CBUS" >CBUS</option>
                         <option value="CINCY" >CINCY</option>
@@ -16,9 +16,9 @@
                         <option value="PHL" >PHL</option>
                         </select><br/>
                  
-                        <span class="label">Role </span><input type="text" v-model="profile.role"><br/>
+                        <span class="label">Role </span><input type="text" v-model="profile.role" required><br/>
                   
-                        <span class="label">Start Date </span><input type="date" v-model="profile.startDate"><br/>
+                        <span class="label">Start Date </span><input type="date" v-model="profile.startDate" required><br/>
                   
                     <div class="dropzone-div">
                         <span class="profile-label">Profile Picture </span>
