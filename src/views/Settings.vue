@@ -14,7 +14,7 @@
         <span class="label">Certification Length </span> 
         <input type="text" v-model="campus.certLength" class="short-input" placeholder="Months ..." ><br>
         <span class="label">Start Date of Current Period</span>
-        <input type="date" v-model="campus.currentPeriod" class="short-input" @change="alter" />
+        <input type="date" v-model="campus.periodInput" class="short-input" @change="alter" />
         <br />
         <button class="submit-button" @click="submitDate" >Submit</button>
      </div>
@@ -34,6 +34,7 @@ export default {
      email: auth.getUser().sub,
      permission: auth.getUser().rol,
      campusShortCode:'',
+     periodInput: '',
       campus:{
         certLength:'',
         currentPeriod:Date,
@@ -47,7 +48,7 @@ export default {
   },
   methods: {
     alter(){
-      let d = new Date(this.campus.currentPeriod)
+      let d = new Date(this.campus.periodInput)
       let date = new Date(d.setHours(d.getHours()+4))
       this.campus.currentPeriod = date
       return this.campus.currentPeriod

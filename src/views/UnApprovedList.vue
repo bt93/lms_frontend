@@ -51,6 +51,9 @@
           @click.prevent="showProof(aTrain.proof)"
           v-if=" aTrain.proof.includes('cloudinary')"
         >Image</h3>
+        <h3 class="proof-link" v-else-if="aTrain.proof === ''">
+          No Proof Given
+        </h3>
         <h3 class="proof-link" v-else>
           <a v-bind:href="aTrain.proof" target="blank">Link</a>
         </h3>

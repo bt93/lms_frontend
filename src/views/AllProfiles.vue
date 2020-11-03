@@ -1,44 +1,46 @@
 <template>
   <div id="profile">
     <ul>
-      <li v-for="aProfile in profiles" v-bind:key="aProfile.profileId" class="list">
+      <li v-for="aProfile in profiles" v-bind:key="aProfile.profileId">
         <router-link
           v-bind:to="{name: 'admnprofile',
                     params: {profile: aProfile, currentpermission:permission}}"
         >
+        <div class="list">
           <div id="image-div">
             <img :src="aProfile.profilePic" class="profilePic" height="200px" />
           </div>
+          <div id="profile-detail">
+            <h1>{{aProfile.firstname+" "+aProfile.lastname}}</h1>
+            <h2>
+              <span class="label">Location</span>
+              {{aProfile.campusShortCode}}
+            </h2>
+            <h2>
+              <span class="label">Position</span>
+              {{aProfile.role}}
+            </h2>
+            <h2>
+              <span class="label">Start Date</span>
+              {{aProfile.startDate}}
+            </h2>
+          </div>
+          <div class="time-div">
+            <p>
+              Compliance Total:
+              <span class="compliance">{{aProfile.complianceTime/60}}</span>
+            </p>
+            <p>
+              Elective Total:
+              <span class="elective">{{aProfile.electiveTime/60}}</span>
+            </p>
+            <p>
+              Total:
+              <span class="total">{{aProfile.electiveTime/60 + aProfile.complianceTime/60}}</span>
+            </p>
+          </div>
+        </div>
         </router-link>
-        <div id="profile-detail">
-          <h1>{{aProfile.firstname+" "+aProfile.lastname}}</h1>
-          <h2>
-            <span class="label">Location</span>
-            {{aProfile.campusShortCode}}
-          </h2>
-          <h2>
-            <span class="label">Position</span>
-            {{aProfile.role}}
-          </h2>
-          <h2>
-            <span class="label">Start Date</span>
-            {{aProfile.startDate}}
-          </h2>
-        </div>
-        <div class="time-div">
-          <p>
-            Compliance Total:
-            <span class="compliance">{{aProfile.complianceTime/60}}</span>
-          </p>
-          <p>
-            Elective Total:
-            <span class="elective">{{aProfile.electiveTime/60}}</span>
-          </p>
-          <p>
-            Total:
-            <span class="total">{{aProfile.electiveTime/60 + aProfile.complianceTime/60}}</span>
-          </p>
-        </div>
       </li>
     </ul>
   </div>
