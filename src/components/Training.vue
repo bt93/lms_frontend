@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="training-list">
+    <ul class="training-list" v-if="training.length > 0">
       <li v-for="aTrain in training" v-bind:key="aTrain.trainingId" class="training-item">
         <div
           id="proof-image-div"
@@ -104,6 +104,11 @@
           </div>
           <button class="delete-button" @click="deleteTraining(aTrain.trainingId)">Delete</button>
         </div>
+      </li>
+    </ul>
+    <ul class="training-list" v-else>
+      <li class="training-item">
+        <h1>Employee has no training at this time.</h1>
       </li>
     </ul>
   </div>
