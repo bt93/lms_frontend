@@ -62,6 +62,10 @@ export default {
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
+    
+    if (auth.getToken() !== null) {
+      this.$router.push("/profile")
+    }
   },
   methods: {
     toLower(){
